@@ -88,19 +88,73 @@ const columns = [
   },
 ];
 
-function createData(time00, time02, time04, time06, time08, time10, time12, time14, time16, time18, time20, time22) {
-  return { time00, time02, time04, time06, time08, time10, time12, time14, time16, time18, time20, time22 };
+function createData(
+  time00,
+  time02,
+  time04,
+  time06,
+  time08,
+  time10,
+  time12,
+  time14,
+  time16,
+  time18,
+  time20,
+  time22
+) {
+  return {
+    time00,
+    time02,
+    time04,
+    time06,
+    time08,
+    time10,
+    time12,
+    time14,
+    time16,
+    time18,
+    time20,
+    time22,
+  };
 }
 
 export default function StickyHeadTable({ schedule }) {
   const rows = {
-    Monday: [createData(...test("mon", "Midgard")), createData(...test("mon", "Vanaheim")), createData(...test("mon", "Jotunheim"))],
-    Tuesday: [createData(...test("tue", "Midgard")), createData(...test("tue", "Vanaheim")), createData(...test("tue", "Jotunheim"))],
-    Wednesday: [createData(...test("wed", "Midgard")), createData(...test("wed", "Vanaheim")), createData(...test("wed", "Jotunheim"))],
-    Thursday: [createData(...test("thu", "Midgard")), createData(...test("thu", "Vanaheim")), createData(...test("thu", "Jotunheim"))],
-    Friday: [createData(...test("fri", "Midgard")), createData(...test("fri", "Vanaheim")), createData(...test("fri", "Jotunheim"))],
-    Saturday: [createData(...test("sat", "Midgard")), createData(...test("sat", "Vanaheim")), createData(...test("sat", "Jotunheim"))],
-    Sunday: [createData(...test("sun", "Midgard")), createData(...test("sun", "Vanaheim")), createData(...test("sun", "Jotunheim"))],
+    Monday: [
+      createData(...test("mon", "Midgard")),
+      createData(...test("mon", "Vanaheim")),
+      createData(...test("mon", "Jotunheim")),
+    ],
+    Tuesday: [
+      createData(...test("tue", "Midgard")),
+      createData(...test("tue", "Vanaheim")),
+      createData(...test("tue", "Jotunheim")),
+    ],
+    Wednesday: [
+      createData(...test("wed", "Midgard")),
+      createData(...test("wed", "Vanaheim")),
+      createData(...test("wed", "Jotunheim")),
+    ],
+    Thursday: [
+      createData(...test("thu", "Midgard")),
+      createData(...test("thu", "Vanaheim")),
+      createData(...test("thu", "Jotunheim")),
+    ],
+    Friday: [
+      createData(...test("fri", "Midgard")),
+      createData(...test("fri", "Vanaheim")),
+      createData(...test("fri", "Jotunheim")),
+    ],
+    Saturday: [
+      createData(...test("sat", "Midgard")),
+      createData(...test("sat", "Vanaheim")),
+      createData(...test("sat", "Jotunheim")),
+    ],
+    Sunday: [
+      createData(...test("sun", "Midgard")),
+      createData(...test("sun", "Vanaheim")),
+      createData(...test("sun", "Jotunheim")),
+    ],
   };
 
   // export default function StickyHeadTable({ schedule }) {
@@ -235,7 +289,11 @@ export default function StickyHeadTable({ schedule }) {
               <TableHead>
                 <TableRow>
                   {columns.map((column) => (
-                    <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }}>
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ minWidth: column.minWidth }}
+                    >
                       {column.label}
                     </TableCell>
                   ))}
@@ -243,20 +301,29 @@ export default function StickyHeadTable({ schedule }) {
               </TableHead>
               <TableBody>
                 {/* changed the MUI "structure" from rows to displayedRows */}
-                {displayedRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                  return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                      {columns.map((column) => {
-                        const value = row[column.id];
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === "number" ? column.format(value) : value}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  );
-                })}
+                {displayedRows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => {
+                    return (
+                      <TableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={row.code}
+                      >
+                        {columns.map((column) => {
+                          const value = row[column.id];
+                          return (
+                            <TableCell key={column.id} align={column.align}>
+                              {column.format && typeof value === "number"
+                                ? column.format(value)
+                                : value}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })}
               </TableBody>
             </Table>
           </TableContainer>
@@ -267,7 +334,9 @@ export default function StickyHeadTable({ schedule }) {
 }
 
 export async function getServerSideProps() {
-  const api = "http://localhost:8080/schedule";
+  // const api = "http://localhost:8080/schedule";
+  const api = "https://nova-enchanted-confidence.glitch.me/schedule";
+
   const res = await fetch(api);
   const data = await res.json();
   console.log(data);
