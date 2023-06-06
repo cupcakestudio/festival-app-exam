@@ -7,17 +7,29 @@ import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/footer";
 
-
+//code test commit
 export function Overskrift() {
   return (
     <>
       <article className={styles.overskrift}>
         <Navigation></Navigation>
-        <h2 className="fadeIn">FOO <br/> FESTIVAL</h2>
+        <h2 className="fadeIn">
+          FOO <br /> FESTIVAL
+        </h2>
       </article>
-      <svg className="pil_forside" xmlns="http://www.w3.org/2000/svg" width="50" height="200" fill="currentColor" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
-</svg>
+      <svg
+        className="pil_forside"
+        xmlns="http://www.w3.org/2000/svg"
+        width="50"
+        height="200"
+        fill="currentColor"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
+        />
+      </svg>
     </>
   );
 }
@@ -73,7 +85,7 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      bandData
+      bandData,
     },
   };
 }
