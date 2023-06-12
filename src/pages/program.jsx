@@ -13,12 +13,24 @@ export default function Program({ scheduleData, bandData }) {
 
   // callback function that is called when a band event is clicked. It takes the selected bandEvent as a parameter.
   function handleBandSelection(bandEvent, day) {
-    let stage = scheduleData.Jotunheim[day].filter((act) => act.act === bandEvent.act).length ? "Jotunheim" : false;
+    let stage = scheduleData.Jotunheim[day].filter(
+      (act) => act.act === bandEvent.act
+    ).length
+      ? "Jotunheim"
+      : false;
     if (!stage) {
-      stage = scheduleData.Midgard[day].filter((act) => act.act === bandEvent.act).length ? "Midgard" : false;
+      stage = scheduleData.Midgard[day].filter(
+        (act) => act.act === bandEvent.act
+      ).length
+        ? "Midgard"
+        : false;
     }
     if (!stage) {
-      stage = scheduleData.Vanaheim[day].filter((act) => act.act === bandEvent.act).length ? "Vanaheim" : false;
+      stage = scheduleData.Vanaheim[day].filter(
+        (act) => act.act === bandEvent.act
+      ).length
+        ? "Vanaheim"
+        : false;
     }
 
     let bandInfo = bandData.find((band) => band.name === bandEvent.act);
@@ -61,11 +73,15 @@ export default function Program({ scheduleData, bandData }) {
 
   return (
     <section className={stylesProgram.program_body}>
-        <Navigation></Navigation>
+      <Navigation></Navigation>
       <Head>
         <title>Program</title>
       </Head>
-      <Modal selectedBand={selectedBand} showModal={showModal} handleCloseModal={setShowModal} />
+      <Modal
+        selectedBand={selectedBand}
+        showModal={showModal}
+        handleCloseModal={setShowModal}
+      />
       {/* program site wraped inside a conditional rendering */}
       {/* checks if showModal is false using the logical NOT operator - if true, the content within the parentheses will be rendered. */}
       {!showModal && (
@@ -83,7 +99,11 @@ export default function Program({ scheduleData, bandData }) {
                 return null;
               }
               return (
-                <p className={stylesProgram.programText} key={bandEvent.act} onClick={() => handleBandSelection(bandEvent, "mon")}>
+                <p
+                  className={stylesProgram.programText}
+                  key={bandEvent.act}
+                  onClick={() => handleBandSelection(bandEvent, "mon")}
+                >
                   <span>{" " + bandEvent.act}</span> /
                 </p>
               );
@@ -98,7 +118,11 @@ export default function Program({ scheduleData, bandData }) {
                 return null;
               }
               return (
-                <p className={stylesProgram.programText} key={bandEvent.act} onClick={() => handleBandSelection(bandEvent, "tue")}>
+                <p
+                  className={stylesProgram.programText}
+                  key={bandEvent.act}
+                  onClick={() => handleBandSelection(bandEvent, "tue")}
+                >
                   <span>{" " + bandEvent.act}</span> /
                 </p>
               );
@@ -113,7 +137,11 @@ export default function Program({ scheduleData, bandData }) {
                 return null;
               }
               return (
-                <p className={stylesProgram.programText} key={bandEvent.act} onClick={() => handleBandSelection(bandEvent, "wed")}>
+                <p
+                  className={stylesProgram.programText}
+                  key={bandEvent.act}
+                  onClick={() => handleBandSelection(bandEvent, "wed")}
+                >
                   <span>{" " + bandEvent.act}</span> /
                 </p>
               );
@@ -128,7 +156,11 @@ export default function Program({ scheduleData, bandData }) {
                 return null;
               }
               return (
-                <p className={stylesProgram.programText} key={bandEvent.act} onClick={() => handleBandSelection(bandEvent, "thu")}>
+                <p
+                  className={stylesProgram.programText}
+                  key={bandEvent.act}
+                  onClick={() => handleBandSelection(bandEvent, "thu")}
+                >
                   <span>{" " + bandEvent.act}</span> /
                 </p>
               );
@@ -142,7 +174,11 @@ export default function Program({ scheduleData, bandData }) {
                 return null;
               }
               return (
-                <p className={stylesProgram.programText} key={bandEvent.act} onClick={() => handleBandSelection(bandEvent, "fri")}>
+                <p
+                  className={stylesProgram.programText}
+                  key={bandEvent.act}
+                  onClick={() => handleBandSelection(bandEvent, "fri")}
+                >
                   <span>{" " + bandEvent.act}</span> /
                 </p>
               );
@@ -157,7 +193,11 @@ export default function Program({ scheduleData, bandData }) {
                 return null;
               }
               return (
-                <p className={stylesProgram.programText} key={bandEvent.act} onClick={() => handleBandSelection(bandEvent, "sat")}>
+                <p
+                  className={stylesProgram.programText}
+                  key={bandEvent.act}
+                  onClick={() => handleBandSelection(bandEvent, "sat")}
+                >
                   <span>{" " + bandEvent.act}</span> /
                 </p>
               );
@@ -172,7 +212,11 @@ export default function Program({ scheduleData, bandData }) {
                 return null;
               }
               return (
-                <p className={stylesProgram.programText} key={bandEvent.act} onClick={() => handleBandSelection(bandEvent, "sun")}>
+                <p
+                  className={stylesProgram.programText}
+                  key={bandEvent.act}
+                  onClick={() => handleBandSelection(bandEvent, "sun")}
+                >
                   <span>{" " + bandEvent.act}</span> /
                 </p>
               );
@@ -184,19 +228,13 @@ export default function Program({ scheduleData, bandData }) {
     </section>
   );
 }
-// export async function getServerSideProps() {
-//   const api = "http://localhost:8080/schedule";
-//   const res = await fetch(api);
-//   const data = await res.json();
-//   console.log(data);
-//   return {
-//     props: { schedule: data },
-//   };
-// }
 
 export async function getServerSideProps() {
   //const apiEndpoints = ["http://localhost:8080/bands", "http://localhost:8080/schedule"];
-  const apiEndpoints = ["https://nova-enchanted-confidence.glitch.me/bands", "https://nova-enchanted-confidence.glitch.me/schedule"];
+  const apiEndpoints = [
+    "https://nova-enchanted-confidence.glitch.me/bands",
+    "https://nova-enchanted-confidence.glitch.me/schedule",
+  ];
 
   // mapper igennem hver array alt efter hvilket endpoint det er og fetcher
   const apiRequest = apiEndpoints.map((endpoint) => fetch(endpoint));

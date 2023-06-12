@@ -16,6 +16,7 @@ export default function FestivalMap({ scheduleData }) {
   const containerWidth = 180;
 
   useEffect(() => {
+    //prøver at placere teltene korrekt ift. window size
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
       setWindowHeight(window.innerHeight);
@@ -26,8 +27,8 @@ export default function FestivalMap({ scheduleData }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  
-  //funktion der kører ved klik på telt og sætter tent værdi alt efter hvilket img vi klikker på + sætter setShowModal = true 
+
+  //funktion der kører ved klik på telt og sætter tent værdi alt efter hvilket img vi klikker på + sætter setShowModal = true
   function handleTentClick(tent) {
     setSelectedTent(tent), setShowModal(true);
   }
@@ -47,17 +48,14 @@ export default function FestivalMap({ scheduleData }) {
       1: {
         width: windowWidth * 0.3,
         height: windowHeight * 0.3,
-        
       },
       2: {
         width: windowWidth * 0.3,
         height: windowHeight * 0.3,
-        
       },
       3: {
         width: windowWidth * 0.25,
         height: windowHeight * 0.25,
-        
       },
     };
 
@@ -102,7 +100,7 @@ export default function FestivalMap({ scheduleData }) {
       ) : (
         <div className={styles.mapDiv}>
           <div className={styles.map_top}>
-          <Navigation></Navigation>
+            <Navigation></Navigation>
             <h1 className={styles.map_overskrift}>FESTIVAL MAP </h1>
             <p className={styles.map_underOverskrift}>
               click on the tents to see schedule{" "}

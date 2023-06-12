@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/footer";
 
-//code test commit
 export function Overskrift() {
   return (
     <>
@@ -38,11 +37,13 @@ export function Overskrift() {
 og sætter elements til at være alle elementer med denne class*/
 
 export default function Home({ bandData }) {
+  //special effects animation to load first time for app
   useEffect(() => {
     const elements = document.querySelectorAll(".fadeIn");
     const fadeInElements = Array.from(elements);
 
     function fadeInHandler() {
+      //for hvert element vis det alt efter den er mindre end vinduets højde
       fadeInElements.forEach((element) => {
         const elementPosition = element.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
